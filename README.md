@@ -121,14 +121,38 @@ Example:
 
 ### Sub-directory: Processed data
 
-The
+The outputs from the coexistence analyses and tropic cascade simulations are saved in this directory.
 
+There is a `.csv` file, which includes the estimates for $\mathcal{N}$, $\mathcal{F}$, *invasion growth rate*, *no-niche growth rate*, and *maximum growth rate* for each species in the three protected areas. this file is used to reproduce the composite figures for all protected areas:
 
+* `MCT_combined_data`
 
+Biplots of niche and fitness differences are saved in three `.png` files:
 
+* `Gorongosa_coexistence.png`
+* `Serengeti_coexistence.png`
+* `Laikipia_coexistence.png`
 
 Example:
 
-<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Intermediate_data/C-factors_Laikipia.png" alt="Conversion factors" width="400"/>
+<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Processed_data/Laikipia_coexistence.png" alt="CoexistenceLaikipia" width="400"/>
+
+The similation outputs include three `.txt` files that show the maximum species richness of of a stable community for each level of plant resources richness and for each of the 100 iterations:
+
+* `Gorongosa_SpRichIter100.txt`
+* `Serengeti_SpRichIter100.txt`
+* `Laikipia_SpRichIter100.txt`
+
+Lastly, there a three `.txt` files with the **persistence probability** for each speices for each level of plant resource richness:
+
+* `Gorongosa_SpProbIter100.txt`
+* `Serengeti_SpProbIter100.txt`
+* `Laikipia_SpProbIter100.txt`  
 
 ### Sub-directory: Figures
+
+This directory include the R-scripts used to reproduce the publication-ready composite figures of all the protected areas. **Both script rely on input files from the `Processed data` directory.
+
+First, the script `Combined_Coexistence.R` is used to produce the figure `Combined Coexistence.png`.
+
+Second, the script `Cascade_plots.R` is used to produce the figure `Complete_cascade.png`.
