@@ -1,9 +1,6 @@
 # The effect of plant resource richness on coexistence of a mammal herbivore community
 
 ## Description
-$\mathcal{N_i} = {f_i(0,\mathbf{N^{-i,*}}) \over f_i(0,\mathbf{0}) }$
-
-$f_i(\Sigma_{j \neq i}c_{ij} N_j^{-i,*},\mathbf{0})$
 
 This repository contains all the code and data needed to replicate a modern coexistence analysis for mammal herbiveres from three African protected areas.
 
@@ -26,6 +23,40 @@ The first set of R-scripts is for the multispecies coexistence analysis and the 
 The four sub-directories contain (1) raw input data for analyses, (2) intermediate data for validation purposes, (3) processed output data from simulations, and (4) scripts to replicate figures.
 
 ### Coexistence analysis
+
+There are three R-scripts for the coexistence analysis; one for each protected area:
+
+* `Coexistence_Gorongosa.R`
+* `Coexistence_Serengeti.R`
+* `Coexistence_Laikipia.R`
+
+The scripts identify every possible combination of species and uses the MacArthur Consumer-Resource Model to assess whether the combination of species can coexist stably. Herbivore population synamics are calculated as:
+
+${1 \over N_i } {dN_i \over dt} = b_i (\Sigma_l u_{il} w_l R_l - m_i)$
+
+And the dynamics of the plant species (resources) are modelled as:
+
+${1 \over R_l } {dR_l \over dt} = r_l (K_l - R_l) - \Sigma_i u_{il} N_i$
+
+A combination of species is considered stable if it meets both of the following conditions:
+
+1. All species in the assemblage have positive equilibrium densities ($N_i^*$, the population denisty when growth rates are zero).
+2. None of the other species, those not in the assemblage, are able to invade (i.e. they all have negative invasion growth rates).
+
+If these two conditions are met for multiple combinations of species, the combination with the highest species richness is seleceted to calcualte multispecies niche ($\mathcal{N}$) and fitness ($\mathcal{F}$) differnences according to the method outline by:
+
+* Spaak & De Laender (2020) [Intuitive and broadly applicable definitions of niche and fitness differences.](https://doi.org/10.1111/ele.13511) *Ecology Letters*, 23, 1117 - 1128.
+
+Niche differences are calculated as the ratio between the the differnece between the *invasion growth rate* and the *no-niche growth rate* and the differnece between the *maximum growth rate* and the *no-niche growth rate*:
+
+$\mathcal{N_i} = {{f_i(0,\mathbf{N^{-i,* }}) - {f_i(\Sigma_{j \neq i}c_{ij} N_j^{-i,* },\mathbf{0})} }  \over f_i(0,\mathbf{0}) - f_i(\Sigma_{j \neq i}c_{ij} N_j^{-i,* },\mathbf{0}) }$
+
+Fitness differences are the ratio between the *no-niche growth rate* and the *maximum growth rate*:
+
+$\mathcal{F_i} = {{{f_i(\Sigma_{j \neq i}c_{ij} N_j^{-i,* },\mathbf{0})} }  \over f_i(0,\mathbf{0}) }$
+
+The *no-niche growth rate* is the rate at which a population would grow if all its competitors consumed exactly the same resources (i.e. no niche differences), but continues to consume the samebulk amount of food. This calcualtion require as a conversion factor, $c_{ij}$ that translates the consumption ratio of species *j* into units of species *i*, so that $c_{ij} = {1 \over c_{ji}}$. 
+
 
 
 
