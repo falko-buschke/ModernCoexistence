@@ -40,7 +40,7 @@ ${1 \over R_l } {dR_l \over dt} = r_l (K_l - R_l) - \Sigma_i u_{il} N_i$
 
 A combination of species is considered stable if it meets both of the following conditions:
 
-1. All species in the assemblage have positive equilibrium densities ($N_i^*$, the population denisty when growth rates are zero).
+1. All species in the assemblage have positive equilibrium densities ($N_i^*$, the population density when growth rates are zero).
 2. None of the other species, those not in the assemblage, are able to invade (i.e. they all have negative invasion growth rates).
 
 If these two conditions are met for multiple combinations of species, the combination with the highest species richness is seleceted to calcualte multispecies niche ($\mathcal{N}$) and fitness ($\mathcal{F}$) differnences according to the method outline by:
@@ -57,10 +57,24 @@ $\mathcal{F_i} = {{{f_i(\Sigma_{j \neq i}c_{ij} N_j^{-i,* },\mathbf{0})} }  \ove
 
 The *no-niche growth rate* is the rate at which a population would grow if all its competitors consumed exactly the same resources (i.e. no niche differences), but continues to consume the samebulk amount of food. This calcualtion require as a conversion factor, $c_{ij}$ that translates the consumption ratio of species *j* into units of species *i*, so that $c_{ij} = {1 \over c_{ji}}$. 
 
-
-
-
 ### Trophic cascade simulation
+
+There are three R-scripts to simulate the incremental removal of plant resources and evaluate the maximum richness of stable communities:
+
+* `Cascade_Gorongosa.R`
+* `Cascade_Serengeti.R`
+* `Cascade_Laikipia.R`
+
+This simulation sample randomly (without replacement) plant species and then uses the same approach described above to determine the maximum species richness of the stable community of herbivores. Coexistence is established if:
+
+1. All species in the assemblage have positive equilibrium densities ($N_i^*$, the population denisty when growth rates are zero).
+2. None of the other species, those not in the assemblage, are able to invade (i.e. they all have negative invasion growth rates).
+
+This whole process is iterated 100 times for each level of plant resources richness. 
+ 
+In addition to the maximum richness of each interation, the presence of individual species is tracked. The persistence probability of each species at each level of plant reource richness is estimated by dividing the number of interation in which the species can persist stably, by the total number of iterations.
+
+Results for richness and species' persistence probabilities are written to file and save in sub-directory `Processed_data`.
 
 ### Raw Data
 
