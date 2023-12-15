@@ -89,7 +89,7 @@ for(lev in 1:length(resource.level)) {
 			igr <- rep(NA,length(invaders))
 			# Loop to calcualte invasion growth rates
 				for (n in 1:length(invaders)){
-					igr[n] <- R.vect[invaders][n] - sum(t(U.mat.b)[id,invaders[n]]*N.star)
+					igr[n] <- R.vect[invaders][n] - sum((U.mat.b)[id,invaders[n]]*N.star)
 				}
 			equilibrium[k] <- ifelse(any(igr>0),0,1)	
 			}
