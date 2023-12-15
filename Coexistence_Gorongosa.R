@@ -173,7 +173,7 @@ F.res[m] <- (-nngr/R.vect[invader.sub])/(1-(nngr/R.vect[invader.sub]))
 # Make a plot of the results 
 cols2 <- colorRampPalette(c(rgb(0,0,0.5,0.25),rgb(0,0.8,0.8,0.25),rgb(1,0.5,0,0.25)),interpolate="linear")(dim(comm)[1])
 
-png(filename="Processed_data/Goronogosa_coexistence.png",width=16,height=16,units="cm",res=300)
+png(filename="Processed_data/Gorongosa_coexistence.png",width=16,height=16,units="cm",res=300)
 par(mai=c(0.8,0.8,0.075,0.075))
 
 plot(N.inv,F.inv, xlim=c(0,1), ylim=c(0,1),type="n",las=1,
