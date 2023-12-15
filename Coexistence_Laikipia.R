@@ -1,6 +1,3 @@
-setwd("C:/Users/Falko/Documents/Standalone Research/Mammal Isotopes/Most recent manuscript and files")
-
-
 # Load the data
 comm <- read.table("Raw_data/Laikipia_data.txt", sep="\t", header=T, stringsAsFactors=T)
 
@@ -172,9 +169,7 @@ F.res[m] <- (-nngr/R.vect[invader.sub])/(1-(nngr/R.vect[invader.sub]))
 
 }
 
-
-
-
+######################################################################################################################################
 # Make a plot of the results 
 cols2 <- colorRampPalette(c(rgb(0,0,0.5,0.25),rgb(0,0.8,0.8,0.25),rgb(1,0.5,0,0.25)),interpolate="linear")(dim(comm)[1])
 
