@@ -22,7 +22,7 @@ The first set of R-scripts is for the multispecies coexistence analysis and the 
 
 The four sub-directories contain (1) raw input data for analyses, (2) intermediate data for validation purposes, (3) processed output data from simulations, and (4) scripts to replicate figures.
 
-### Coexistence analysis
+### Scripts: Coexistence analysis
 
 There are three R-scripts for the coexistence analysis; one for each protected area:
 
@@ -57,7 +57,7 @@ $\mathcal{F_i} = {{{f_i(\Sigma_{j \neq i}c_{ij} N_j^{-i,* },\mathbf{0})} }  \ove
 
 The *no-niche growth rate* is the rate at which a population would grow if all its competitors consumed exactly the same resources (i.e. no niche differences), but continues to consume the samebulk amount of food. This calcualtion require as a conversion factor, $c_{ij}$ that translates the consumption ratio of species *j* into units of species *i*, so that $c_{ij} = {1 \over c_{ji}}$. 
 
-### Trophic cascade simulation
+### Scripts: Trophic cascade simulation
 
 There are three R-scripts to simulate the incremental removal of plant resources and evaluate the maximum richness of stable communities:
 
@@ -76,10 +76,10 @@ In addition to the maximum richness of each interation, the presence of individu
 
 Results for richness and species' persistence probabilities are written to file and save in sub-directory `Processed_data`.
 
-### Raw Data
+### Sub-directory: Raw Data
 
-### Intermediate data
+### Sub-directory: Intermediate data
 
-### Processed data
+### Sub-directory: Processed data
 
-### Figures
+### Sub-directory: Figures
