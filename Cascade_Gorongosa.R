@@ -112,12 +112,9 @@ sp.mat[iter,] <- apply(as.matrix(assemblages[which(richness==max(richness[which(
 sp.prob[lev,] <- colSums(sp.mat)
 }
 
-library(vioplot)
-library(RColorBrewer)
-
 # Write outputs to file
 write.table(rich.mat,file= "Processed_data/Gorongosa_SpRichIter100.txt",quote=T,sep="\t",row.names=F,col.names=T)
 
 colnames(sp.prob) <- sp.name
-write.table(sp.prob,file= "Gorongosa_SpProbIter100.txt",quote=T,sep="\t",row.names=F,col.names=T)
+write.table(sp.prob,file= "Processed_data/Gorongosa_SpProbIter100.txt",quote=T,sep="\t",row.names=F,col.names=T)
 
