@@ -115,8 +115,20 @@ For comparison, the directory also includes three impage in `.png` format, which
 * `C-factors_Serengeti.png`
 * `C-factors_Laikipia.png`
 
-<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Study%20Area%20Map.png" alt="Study Area" width="300"/>
+Example:
+
+<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Intermediate_data/C-factors_Laikipia.png" alt="Conversion factors" width="400"/>
 
 ### Sub-directory: Processed data
+
+The
+
+
+
+
+
+Example:
+
+<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Intermediate_data/C-factors_Laikipia.png" alt="Conversion factors" width="400"/>
 
 ### Sub-directory: Figures
