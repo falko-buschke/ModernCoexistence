@@ -151,7 +151,7 @@ Lastly, there a three `.txt` files with the **persistence probability** for each
 
 ### Sub-directory: Figures
 
-This directory include the R-scripts used to reproduce the publication-ready composite figures of all the protected areas. **Both script rely on input files from the `Processed data` directory.
+This directory include the R-scripts used to reproduce the publication-ready composite figures of all the protected areas. **Both script rely on input files from the `Processed data` directory.**
 
 First, the script `Combined_Coexistence.R` is used to produce the figure `Combined Coexistence.png`.
 
