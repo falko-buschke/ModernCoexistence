@@ -1,13 +1,13 @@
 # Load the data
-comm <- read.table("Raw_data/Gorongosa_data.txt", sep="\t", header=T, stringsAsFactors=T)
+comm <- read.table("Raw_data/Serengeti_data.txt", sep="\t", header=T, stringsAsFactors=T)
 
 # Create a vector of species names
 sp.name <- comm$Species
 
 
 #########################################
-# Create a grid with every possible combination of 11 species 
-assemblages <- expand.grid(0:1, 0:1, 0:1, 0:1, 0:1, 0:1, 0:1, 0:1, 0:1, 0:1, 0:1)
+# Create a grid with every possible combination of 8 species 
+assemblages <- expand.grid(0:1, 0:1, 0:1, 0:1, 0:1, 0:1, 0:1, 0:1)
 
 # A numeric vector with integer species IDs
 sp.id <- 1:dim(comm)[1]
@@ -42,7 +42,7 @@ U.mat <- matrix(NA,nrow=dim(cons.mat)[1],ncol=dim(cons.mat)[1])
 U.mat.b <- (U.mat * bi)
 colnames(U.mat.b) <- sp.name
 rownames(U.mat.b) <- sp.name
-write.table(U.mat.b,file= "Intermediate_data/U_matrix_Gorongosa.txt",quote=T,sep="\t",row.names=T,col.names=NA)
+write.table(U.mat.b,file= "Intermediate_data/U_matrix_Serengeti.txt",quote=T,sep="\t",row.names=T,col.names=NA)
 
 
 # A loop to explore whether combinations of species can coexist stably
@@ -103,13 +103,13 @@ N.star <- solve(U.mat.b[residents,residents],R.vect[residents])
 	}
 
 # Save a plot of the two conversion factors. This is only an intermediate validation step to ensure the C-factors make sense
-png(filename="Intermediate_data/C-factors_Gorongosa.png",width=16,height=16,units="cm",res=300)
+png(filename="Intermediate_data/C-factors_Serengeti.png",width=16,height=16,units="cm",res=300)
 	plot(c.fact2,c.fact, ylab="Calculated c-factors",log="xy" , las=1,xlab="Total dietary consumption ratios"); abline(a=0,b=1, col="red")
 dev.off()
 # Save C-factors to intermediate file for validation checks
 colnames(c.fact) <- sp.name
 rownames(c.fact) <- sp.name
-write.table(round(c.fact,3),file= "Intermediate_data/c_conversion_Gorongosa.txt",quote=T,sep="\t",row.names=T,col.names=NA)
+write.table(round(c.fact,3),file= "Intermediate_data/c_conversion_Serengeti.txt",quote=T,sep="\t",row.names=T,col.names=NA)
 
 # Blank vectors to save ivasion growth rates (igr) and no-niche growth rate (nngr)
 	igr <- rep(NA,length(invaders))
@@ -173,7 +173,7 @@ F.res[m] <- (-nngr/R.vect[invader.sub])/(1-(nngr/R.vect[invader.sub]))
 # Make a plot of the results 
 cols2 <- colorRampPalette(c(rgb(0,0,0.5,0.25),rgb(0,0.8,0.8,0.25),rgb(1,0.5,0,0.25)),interpolate="linear")(dim(comm)[1])
 
-png(filename="Processed_data/Goronogosa_coexistence.png",width=16,height=16,units="cm",res=300)
+png(filename="Processed_data/Serengeti_coexistence.png",width=16,height=16,units="cm",res=300)
 par(mai=c(0.8,0.8,0.075,0.075))
 
 plot(N.inv,F.inv, xlim=c(0,1), ylim=c(0,1),type="n",las=1,
@@ -190,7 +190,7 @@ points (N.res,F.res,pch=1, cex=1.3)
 text (N.res,F.res,sp.name[residents], pos=c(4,4,4,2,4,3), cex=0.6)
 
 legend("topleft", pch=21, col="black",pt.bg=cols2,legend=sp.name,pt.cex=1.3, bty="n",bg='n')
-text(0.4,0.05,"Gorongosa", cex=1.5)
+text(0.4,0.05,"Serengeti", cex=1.5)
 dev.off()
 
 # Correlation test for niche- and fitness differences
