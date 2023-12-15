@@ -95,6 +95,28 @@ Each dataset has the following columns:
 
 ### Sub-directory: Intermediate data
 
+The purpose of this sub-directory is to store intermediate results, which don't affect any other analyses, but are useful for method-validation and sense checks.
+
+The directory includes three `.txt` files containing a $S \times S$ matrix, with the  consumption rates scaled by the efficiency at which plant biomass is converted into herbivore population growth rates: $b_i \Sigma_l u_{il} u_{jl}$. These matrices are used to calculate equilibrium densities:
+
+* `U_matrix_Gorongosa.txt`
+* `U_matrix_Serengeti.txt`
+* `U_matrix_Laikipia.txt`
+
+ Next, there are three matrices in `.txt` format, which include the conversion facotrs $c_{ij}$. The factors are calcualted as $c_{ij} = \sqrt{ \Sigma_l u_{jl}^2 \over \Sigma_l u_{il}^2}$. These matrices are included in files:
+
+* `c_conversion_Gorongosa.txt`
+* `c_conversion_Serengeti.txt`
+* `c_conversion_Laikipia.txt`
+
+For comparison, the directory also includes three impage in `.png` format, which plots the conversion factors $c_{ij}$ calcualtes as above against the ratio of minimum dietary requirements based on metabolic scaling: $m_i = 0.05. M_i^{0.77}$. This is just a sense check to confirm that the code is correct because conversion factors and consumption ratios should be storngly correlated. Images saved as files:
+
+* `C-factors_Gorogosa.png`
+* `C-factors_Serengeti.png`
+* `C-factors_Laikipia.png`
+
+<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Study%20Area%20Map.png" alt="Study Area" width="300"/>
+
 ### Sub-directory: Processed data
 
 ### Sub-directory: Figures
