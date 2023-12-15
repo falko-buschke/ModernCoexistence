@@ -155,4 +155,10 @@ This directory include the R-scripts used to reproduce the publication-ready com
 
 First, the script `Combined_Coexistence.R` is used to produce the figure `Combined Coexistence.png`.
 
+Example:
+
+<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Figures/Combined Coexistence.png" alt="Coexistence" width="1200"/>
+
+
+
 Second, the script `Cascade_plots.R` is used to produce the figure `Complete_cascade.png`.
