@@ -1,0 +1,9 @@
+""	"Impala"	"Hartebeest"	"Wildebeest"	"Topi"	"Plains_zebra"	"Thomsons _gazelle"	"Grants_gazelle"	"Buffalo"
+"Impala"	1	0.388	0.358	0.567	0.269	1.103	0.949	0.23
+"Hartebeest"	2.575	1	0.921	1.461	0.693	2.84	2.442	0.592
+"Wildebeest"	2.796	1.086	1	1.586	0.753	3.085	2.652	0.643
+"Topi"	1.763	0.685	0.63	1	0.474	1.945	1.672	0.405
+"Plains_zebra"	3.716	1.443	1.329	2.108	1	4.099	3.525	0.855
+"Thomsons _gazelle"	0.907	0.352	0.324	0.514	0.244	1	0.86	0.208
+"Grants_gazelle"	1.054	0.409	0.377	0.598	0.284	1.163	1	0.242
+"Buffalo"	4.348	1.689	1.555	2.467	1.17	4.797	4.125	1
