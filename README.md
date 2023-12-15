@@ -78,6 +78,21 @@ Results for richness and species' persistence probabilities are written to file 
 
 ### Sub-directory: Raw Data
 
+This directory includes three `.txt` files for each of the protected areas:
+
+1. `Gorongosa_data.txt`: data for 11 mammal herbivore species and 144 plant resource species.
+2. `Serengeti_data.txt`: data for 8 mammal herbivore species and 91 plant resource species.
+3. `Laikipia_data.txt`: data for 12 mammal herbivore species and 121 plant resource species.
+
+Each dataset has the following columns:
+
+* **Column 1** `Species`: The common name of the herbivore species
+* **Column 2** `BM`: The herbivore species bodymass, in kg.
+* **Column 3** `Rmax`: The maximum annual rate of population increase, based on life-history traits
+* **Column 4** `M`: The natural rate of attrition (mortality), which is the inverse of the average lifespan.
+* **Column 5- onwards** `Sp1... Spn`: The proprion of plant species *1* to *n* in the diet of the hebivore species (row sums equal 1).
+
+
 ### Sub-directory: Intermediate data
 
 ### Sub-directory: Processed data
