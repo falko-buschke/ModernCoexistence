@@ -1,14 +1,12 @@
-setwd("C:/Users/Falko/Documents/Standalone Research/Mammal Isotopes/Most recent manuscript and files")
-
-# Load the data
+# Load the data for Gorongosa
 g.prob <- read.table("Processed_data/Gorongosa_SpProbIter100.txt", sep="\t", header=T, stringsAsFactors=T)
 g.rich <- read.table("Processed_data/Gorongosa_SpRichIter100.txt", sep="\t", header=T, stringsAsFactors=T)
 
-# Load the data
+# Load the data for Serengeti
 s.prob <- read.table("Processed_data/Serengeti_SpProbIter100.txt", sep="\t", header=T, stringsAsFactors=T)
 s.rich <- read.table("Processed_data/Serengeti_SpRichIter100.txt", sep="\t", header=T, stringsAsFactors=T)
 
-# Load the data
+# Load the data for Laikipia
 l.prob <- read.table("Processed_data/Laikipia_SpProbIter100.txt", sep="\t", header=T, stringsAsFactors=T)
 l.rich <- read.table("Processed_data/Laikipia_SpRichIter100.txt", sep="\t", header=T, stringsAsFactors=T)
 
