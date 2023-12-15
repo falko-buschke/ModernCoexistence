@@ -1,6 +1,10 @@
 # The effect of plant resource richness on coexistence of a mammal herbivore community
 
 ## Description
+$\mathcal{N_i} = {f_i(0,\mathbf{N^{-i,*}}) \over f_i(0,\mathbf{0}) }$
+
+$f_i(\Sigma_{j \neq i}c_{ij} N_j^{-i,*},\mathbf{0})$
+
 This repository contains all the code and data needed to replicate a modern coexistence analysis for mammal herbiveres from three African protected areas.
 
 The information was correct as of 15 December 2023. For any queries, contact Falko Buschke `falko.buschke@gmail.com`
@@ -17,11 +21,13 @@ This study relies on previously published data from three protected areas in Afr
 ## Repository Stucture
 The repository is made up of two sets of R-scripts and four sub-directories. 
 
-The first set of R=scripts is for the multispecies coexistence analysis and the second set of scripts simulates the incremental removal of plant species to assess how tropic cascades affect herbivore coexistence. 
+The first set of R-scripts is for the multispecies coexistence analysis and the second set of scripts simulates the incremental removal of plant species to assess how tropic cascades affect herbivore coexistence. 
 
 The four sub-directories contain (1) raw input data for analyses, (2) intermediate data for validation purposes, (3) processed output data from simulations, and (4) scripts to replicate figures.
 
 ### Coexistence analysis
+
+
 
 ### Trophic cascade simulation
 
