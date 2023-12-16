@@ -1,12 +1,14 @@
-# Load the data for Gorongosa
+setwd("C:/Users/Falko/Documents/Standalone Research/Mammal Isotopes/Most recent manuscript and files")
+
+# Load the data
 g.prob <- read.table("Processed_data/Gorongosa_SpProbIter100.txt", sep="\t", header=T, stringsAsFactors=T)
 g.rich <- read.table("Processed_data/Gorongosa_SpRichIter100.txt", sep="\t", header=T, stringsAsFactors=T)
 
-# Load the data for Serengeti
+# Load the data
 s.prob <- read.table("Processed_data/Serengeti_SpProbIter100.txt", sep="\t", header=T, stringsAsFactors=T)
 s.rich <- read.table("Processed_data/Serengeti_SpRichIter100.txt", sep="\t", header=T, stringsAsFactors=T)
 
-# Load the data for Laikipia
+# Load the data
 l.prob <- read.table("Processed_data/Laikipia_SpProbIter100.txt", sep="\t", header=T, stringsAsFactors=T)
 l.rich <- read.table("Processed_data/Laikipia_SpRichIter100.txt", sep="\t", header=T, stringsAsFactors=T)
 
@@ -31,10 +33,12 @@ par(mai=c(.7,.7,0.1,0.1))
 
 ########################################################################################
 # Make the base violin plot of the simulated data (replicates are iterations)
-plot(0,0,type="n", las=1, ylab="Species richness", xlab="Number of resources",
-	,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0), ylim=c(0,10), xlim=c(-0.15,14.15), xaxt='n')
+plot(0,0,type="n", las=1, ylab="Herbivore species richness", xlab="Number of plant resources",
+	,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0), ylim=c(0,12), xlim=c(-0.15,14.5), xaxt='n')
 # Add horizontal axis
-axis(1, at =seq(0,14,by=2), labels=c("0","20","40","60","80","100","120","140"),cex=1.1)
+#axis(1, at =seq(0,14,by=2), labels=c("0","20","40","60","80","100","120","140"),cex.axis=1.1)
+axis(1, at =seq(0,15,by=5), labels=c("0","50","100","150"),cex.axis=1.1)
+
 
 # Add violin plot
 X <- vioplot(g.rich, add=T, col=rgb(0.8,0.8,0.8,1), border=NA,rectCol="black", lineCol="black", 
@@ -61,10 +65,10 @@ lines(xvals, pred.val, lwd=2, col=rgb(0.8,0,0,0.7), lty=1)
 ########################################################################################
 
 # Make the base violin plot of the simulated data (replicates are iterations)
-plot(0,0,type="n", las=1, ylab="Species richness", xlab="Number of resources",
+plot(0,0,type="n", las=1, ylab="Herbivore species richness", xlab="Number of plant resources",
 	,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0), ylim=c(0,8), xlim=c(-0.15,10), xaxt='n')
 # Add horizontal axis
-axis(1, at =seq(0,10,by=2), labels=c("0","20","40","60","80","100"),cex=1.1)
+axis(1, at =seq(0,10,by=2), labels=c("0","20","40","60","80","100"),cex.axis=1.1)
 
 # Add violin plot
 X <- vioplot(s.rich, add=T, col=rgb(0.8,0.8,0.8,1), border=NA,rectCol="black", lineCol="black", 
@@ -92,10 +96,10 @@ lines(xvals, pred.val, lwd=2, col=rgb(0.8,0,0,0.7), lty=1)
 ########################################################################################
 
 # Make the base violin plot of the simulated data (replicates are iterations)
-plot(0,0,type="n", las=1, ylab="Species richness", xlab="Number of resources",
-	,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0), ylim=c(0,10), xlim=c(-0.15,13), xaxt='n')
+plot(0,0,type="n", las=1, ylab="Herbivore species richness", xlab="Number of plant resources",
+	,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0), ylim=c(0,12), xlim=c(-0.15,12), xaxt='n')
 # Add horizontal axis
-axis(1, at =seq(0,12,by=2), labels=c("0","20","40","60","80","100","120"),cex=1.1)
+axis(1, at =seq(0,12,by=2), labels=c("0","20","40","60","80","100","120"),cex.axis=1.1)
 
 # Add violin plot
 X <- vioplot(l.rich, add=T, col=rgb(0.8,0.8,0.8,1), border=NA,rectCol="black", lineCol="black", 
@@ -123,8 +127,15 @@ lines(xvals, pred.val, lwd=2, col=rgb(0.8,0,0,0.7), lty=1)
 ########################################################################################
 ########################################################################################
 
-# Create a species legend using a distinguishable colour ramp
-cols2 <- c(brewer.pal(n = 10, name = "Paired"),brewer.pal(n = 10, name = "Paired"))
+
+# Define a colour ramp with shades of green for grazers, shades of red for mixed feeders, and shades of blue for browsers
+cols2 <- c(colorRampPalette(c(rgb(0,0.4,0,0.25),rgb(0.3,0.9,0.3,0.25)),interpolate="linear")(11),
+			colorRampPalette(c(rgb(0.6,0,0,0.25),rgb(1,0.5,0,0.25)),interpolate="linear")(3),
+			colorRampPalette(c(rgb(0,0.4,1,0.25),rgb(0,0,0.5,0.25)),interpolate="linear")(6))
+
+dash <- rep(c(1,2,3,4),10)
+
+# set margins
 par(mai=c(0,.7,0,0))
 
 # Make a blank plot
@@ -136,7 +147,7 @@ sp.names <-c("Buffalo", "Grevy's zebra", "Hartebeest", "Oribi", "Oryx",
 	"Wildebeest", "Grant's gazelle", "Impala", "Thomson's gazelle",
 	"Bushbuck", "Dik-dik", "Eland", "Klipspringer", "Kudu", "Nyala")
 
-legend("bottom", ncol=5,  lty=rep(c(1,3),each=10), col=cols2, bty='n',legend=sp.names,cex=1.2, lw=2)
+legend("bottom", ncol=5,  lty=dash, col=cols2, bty='n',legend=sp.names,cex=1.2, lw=2)
 
 
 
@@ -146,54 +157,48 @@ par(mai=c(.7,.7,0.1,0.1))
 
 # A vector so that the species correspond to the colors in the legend
 g.cols <- c(13,3,11,8,10,4,7,1,20,15,19)
-# Are the lines solid or dashed
-dash <- ifelse(g.cols>10,3,1)
 
 # Make the plot
-plot(0,0,type="n",xlab="Number of resources", ylab="Presence probability", xlim=c(0,145), 
+plot(0,0,type="n",xlab="Number of plant resources", ylab="Presence probability", xlim=c(0,145), 
 	ylim=c(0,100),las=1 ,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0))
 
 # The persistence of the full stable community
 pres <- c(0,100,0,100,100,100,0,100,100,100,100)
 # Add the lines for each species
 for (nsp in 1:11){
-	lines(c(0,seq(10,140,by=10),144),c(0,g.prob[,nsp],pres[nsp]), col=cols2[g.cols[nsp]], lwd=2, lty=dash[nsp])
+	lines(c(0,seq(10,140,by=10),144),c(0,g.prob[,nsp],pres[nsp]), col=cols2[g.cols[nsp]], lwd=1.5, lty=dash[g.cols[nsp]])
 }
 # Label the panel
 mtext("(d)",cex=1.1, side = 3, adj = 0.03, line = -2,font=1)
 ###########################################################################################
 # A vector so that the species correspond to the colors in the legend
 s.cols <- c(13,3,11,9,6,14,12,1)
-# Are the lines solid or dashed
-dash <- ifelse(s.cols>10,3,1)
 
 # Make the plot
-plot(0,0,type="n",xlab="Number of resources", ylab="Presence probability", xlim=c(0,100), 
+plot(0,0,type="n",xlab="Number of plant resources", ylab="Presence probability", xlim=c(0,100), 
 	ylim=c(0,100),las=1, cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0))
 
 # The persistence of the full stable community
 pres <- c(100,0,100,100,0,0,100,0)
 # Add the lines for each species
 for (nsp in 1:8){
-	lines(c(0,seq(10,90,by=10),91),c(0,s.prob[,nsp],pres[nsp]), col=cols2[s.cols[nsp]], lwd=2, lty=dash[nsp])
+	lines(c(0,seq(10,90,by=10),91),c(0,s.prob[,nsp],pres[nsp]), col=cols2[s.cols[nsp]], lwd=1.5, lty=dash[s.cols[nsp]])
 }
 # Label the panel
 mtext("(e)",cex=1.1, side = 3, adj = 0.03, line = -2,font=1)
 ###########################################################################################
 # A vector so that the species correspond to the colors in the legend
 l.cols <- c(13,3,2,6,10,16,12,5,18,1,17,19)
-# Are the lines solid or dashed
-dash <- ifelse(l.cols>10,31)
 
 # Make the plot
-plot(0,0,type="n",xlab="Number of resources", ylab="Presence probability", xlim=c(0,120), 
+plot(0,0,type="n",xlab="Number of plant resources", ylab="Presence probability", xlim=c(0,120), 
 	ylim=c(0,100),las=1,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0))
 
 # The persistence of the full stable community
 pres <- c(0,100,100,0,100,0,100,0,0,100,100,0)
 # Add the lines for each species
 for (nsp in 1:12){
-	lines(c(0,seq(10,120,by=10),121),c(0,l.prob[,nsp],pres[nsp]), col=cols2[l.cols[nsp]], lwd=2, lty=dash[nsp])
+	lines(c(0,seq(10,120,by=10),121),c(0,l.prob[,nsp],pres[nsp]), col=cols2[l.cols[nsp]], lwd=1.5, lty=dash[l.cols[nsp]])
 }
 # Label the panel
 mtext("(f)",cex=1.1, side = 3, adj = 0.03, line = -2,font=1)
@@ -201,5 +206,3 @@ mtext("(f)",cex=1.1, side = 3, adj = 0.03, line = -2,font=1)
 
 # Close plot device and save to file
 dev.off()
-
-
