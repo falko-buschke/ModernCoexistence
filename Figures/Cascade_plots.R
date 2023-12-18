@@ -14,9 +14,8 @@ l.rich <- read.table("Processed_data/Laikipia_SpRichIter100.txt", sep="\t", head
 
 
 # Install and load the required packages
-#install.packages(c("vioplot","RColorBrewer"))
+#install.packages(c("vioplot"))
 library(vioplot)
-library(RColorBrewer)
 
 ########################################################################################
 # Set up the plot and dimensions
