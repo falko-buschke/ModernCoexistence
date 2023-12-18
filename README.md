@@ -159,7 +159,15 @@ Example:
 
 <img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Figures/Combined Coexistence.png" alt="Coexistence" width="1200"/>
 
-Second, the script `Cascade_plots.R` is used to produce the figure `Complete_cascade.png`.
+
+Second, the script `Growth_Rates.R` creates a plot showing the intrinsic, invasion, an no-niche growth rates for each species in each reserve.
+
+Example:
+
+<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Figures/Growth rates.png" alt="Coexistence" width="400"/>
+
+
+Third, the script `Cascade_plots.R` is used to produce the figure `Complete_cascade.png`.
 
 Example:
 
