@@ -167,8 +167,8 @@ Example:
 <img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Figures/Growth rates.png" alt="Coexistence" width="400"/>
 
 
-Third, the script `Cascade_plots.R` is used to produce the figure `Complete_cascade.png`.
+Third, the script `Cascade_plots.R` is used to produce the figure `Complete_cascade_params.png`.
 
 Example:
 
-<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Figures/Complete_cascade.png" alt="Coexistence" width="1200"/>
+<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Figures/Complete_cascade_params.png" alt="Coexistence" width="1200"/>
