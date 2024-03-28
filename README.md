@@ -13,7 +13,7 @@ This study relies on previously published data from three protected areas in Afr
 2. Serengeti National Park, Tanzania
 3. Laikipia National Park, Kenya
 
-<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Study%20Area%20Map.png" alt="Study Area" width="500"/>
+<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Study_Area_Map.png" alt="Study Area" width="500"/>
 
 ## Repository Stucture
 The repository is made up of two sets of R-scripts and four sub-directories. 
