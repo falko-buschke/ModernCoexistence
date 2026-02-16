@@ -8,7 +8,8 @@ A description of the study is available as:
 
 - Buschke, F., Codron, D., Pringle, R. and Spaak, J., 2025. [A theoretical framework for multispecies coexistence in large herbivores based on functional traits and dietary data](https://doi.org/10.32942/X28H21). EcoEvoRxiv 
 
-The information was correct as of 16 February 2025. For any queries, contact Falko Buschke `falko.buschke@gmail.com`
+The information was correct as of 16 February 2025 and deposited on Zenodo [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18656177.svg)](https://doi.org/10.5281/zenodo.18656177)
+. For any queries, contact Falko Buschke `falko.buschke@gmail.com`
 
 ## Study Area
 This study relies on previously published data from three protected areas in Africa:
