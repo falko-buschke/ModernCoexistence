@@ -1,5 +1,3 @@
-setwd("C:/Users/Falko/Documents/Standalone Research/Mammal Isotopes/Most recent manuscript and files")
-
 # Load the data
 g.prob <- read.table("Processed_data/Gorongosa_SpProbIter100.txt", sep="\t", header=T, stringsAsFactors=T)
 g.rich <- read.table("Processed_data/Gorongosa_SpRichIter100.txt", sep="\t", header=T, stringsAsFactors=T)
@@ -14,12 +12,13 @@ l.rich <- read.table("Processed_data/Laikipia_SpRichIter100.txt", sep="\t", head
 
 
 # Install and load the required packages
-#install.packages(c("vioplot"))
+install.packages(c("vioplot","RColorBrewer"))
 library(vioplot)
 
 ########################################################################################
 # Set up the plot and dimensions
-png(filename="Figures/Complete_cascade.png",width=24,height=18,units="cm",res=300)
+png(filename="Figures/Figure 5.png",width=24,height=18,units="cm",res=300)
+#pdf(file = "Manuscript/Submission Files/Resubmission/Figure5.pdf", width = 9.44882, height = 7.08661) 
 
 # Define plot margins
 #Set panel outline. The top panel is used for the legend
@@ -30,13 +29,20 @@ layout(mat = m,heights = c(0.44,0.12,0.44))
 # Set margins
 par(mai=c(.7,.7,0.1,0.1))
 
+# Should the x-axis be reversed?
+re.ax <- FALSE
 ########################################################################################
 # Make the base violin plot of the simulated data (replicates are iterations)
-plot(0,0,type="n", las=1, ylab="Herbivore species richness", xlab="Number of plant resources",
+if (re.ax==FALSE) {plot(0,0,type="n", las=1, ylab="Herbivore species richness", xlab="Number of plant resources",
 	,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0), ylim=c(0,12), xlim=c(-0.15,14.5), xaxt='n')
+axis(1, at =seq(0,15,by=5), labels=c("0","50","100","150"),cex.axis=1.1) } else{
+plot(0,0,type="n", las=1, ylab="Herbivore species richness", xlab="Number of plant resources removed",
+	,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0), ylim=c(0,12), xlim=c(14.4,-0.6), xaxt='n')
+axis(1,at =seq(14.4,-0.6,l=4),labels=c("0","50","100","150"),cex.axis=1.1)
+
+}
 # Add horizontal axis
 #axis(1, at =seq(0,14,by=2), labels=c("0","20","40","60","80","100","120","140"),cex.axis=1.1)
-axis(1, at =seq(0,15,by=5), labels=c("0","50","100","150"),cex.axis=1.1)
 
 
 # Add violin plot
@@ -54,20 +60,42 @@ mtext("(a) Gorongosa",cex=1.1, side = 3, adj = 0.03, line = -2,font=1)
 IV <- rep(1:14,100)
 DV <- c(t(g.rich))
 nlreg <- nls(DV~a*IV^b,start=list(a=8,b=0.5))
+nlreg2 <- nls(DV~a*(10*IV)^b,start=list(a=8,b=0.5))
 
 # Predict new data from model parameters
 xvals <- seq(0,14.4,l=100)
 pred.val <- predict(nlreg, list(IV = xvals) , se.fit = TRUE,interval = "confidence",level = 0.95)
 # Add lines to plot
 lines(xvals, pred.val, lwd=2, col=rgb(0.8,0,0,0.7), lty=1)
+# Estimated alpha and beta exponents
+if (re.ax==FALSE) {
+mtext(bquote(alpha == .(as.numeric(round(coef(nlreg2)[1],2) ))),cex=1, side = 1, adj = 0.95, line = -4,font=1)
+mtext(bquote(beta == .(as.numeric(round(coef(nlreg2)[2],2) ))),cex=1, side = 1, adj = 0.95, line = -2,font=1)} else{
+mtext(bquote(alpha == .(as.numeric(round(coef(nlreg2)[1],2) ))),cex=1, side = 1, adj = 0.05, line = -4,font=1)
+mtext(bquote(beta == .(as.numeric(round(coef(nlreg2)[2],2) ))),cex=1, side = 1, adj = 0.05, line = -2,font=1)	
+}
+
+
+asreg0 <- nls(DV~a - (a)*exp(-c*IV),start=list(a=8, c=1))
+xvals <- seq(0,14.4,l=100)
+pred.val <- predict(asreg0, list(IV = xvals) , se.fit = TRUE,interval = "confidence",level = 0.95)
+# Add lines to plot
+#lines(xvals, pred.val, lwd=2, col=rgb(0,0.8,0,0.7), lty=1)
+
 
 ########################################################################################
 
 # Make the base violin plot of the simulated data (replicates are iterations)
-plot(0,0,type="n", las=1, ylab="Herbivore species richness", xlab="Number of plant resources",
+if (re.ax==FALSE) {plot(0,0,type="n", las=1, ylab="Herbivore species richness", xlab="Number of plant resources",
 	,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0), ylim=c(0,8), xlim=c(-0.15,10), xaxt='n')
 # Add horizontal axis
-axis(1, at =seq(0,10,by=2), labels=c("0","20","40","60","80","100"),cex.axis=1.1)
+axis(1, at =seq(0,10,by=2), labels=c("0","20","40","60","80","100"),cex.axis=1.1) } else{
+plot(0,0,type="n", las=1, ylab="Herbivore species richness", xlab="Number of plant resources removed",
+	,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0), ylim=c(0,8), xlim=c(9.1,-0.9), xaxt='n')
+# Add horizontal axis
+#axis(1, at =seq(0,10,by=2), labels=c("0","20","40","60","80","100"),cex.axis=1.1) 	
+axis(1,at =seq(9.1,-0.9,l=6),labels=c("0","20","40","60", "80", "100"),cex.axis=1.1)
+}
 
 # Add violin plot
 X <- vioplot(s.rich, add=T, col=rgb(0.8,0.8,0.8,1), border=NA,rectCol="black", lineCol="black", 
@@ -80,25 +108,48 @@ points(c(0,9.1),c(0,4),pch=16,col=rgb(0.7,0,0,1))
 # Label the panel
 mtext("(b) Serengeti",cex=1.1, side = 3, adj = 0.03, line = -2,font=1)
 
+
 # Add a prediction line by defining independent (IV) and dependent (DV) variables and modelling an asymptotic relationship
 IV <- rep(1:9,100)
 DV <- c(t(s.rich))
 nlreg <- nls(DV~a*IV^b,start=list(a=8,b=0.5))
+nlreg2 <- nls(DV~a*(10*IV)^b,start=list(a=8,b=0.5))
 
 # Predict new data from model parameters
 xvals <- seq(0,9.1,l=100)
 pred.val <- predict(nlreg, list(IV = xvals) , se.fit = TRUE,interval = "confidence",level = 0.95)
 # Add lines to plot
 lines(xvals, pred.val, lwd=2, col=rgb(0.8,0,0,0.7), lty=1)
+# Estimated alpha and beta exponents
+if (re.ax==FALSE) {
+mtext(bquote(alpha == .(as.numeric(round(coef(nlreg2)[1],2) ))),cex=1, side = 1, adj = 0.95, line = -4,font=1)
+mtext(bquote(beta == .(as.numeric(round(coef(nlreg2)[2],2) ))),cex=1, side = 1, adj = 0.95, line = -2,font=1)} else{
+mtext(bquote(alpha == .(as.numeric(round(coef(nlreg2)[1],2) ))),cex=1, side = 1, adj = 0.05, line = -4,font=1)
+mtext(bquote(beta == .(as.numeric(round(coef(nlreg2)[2],2) ))),cex=1, side = 1, adj = 0.05, line = -2,font=1)	
+}
+
+
+asreg0 <- nls(DV~a - (a)*exp(-c*IV),start=list(a=8, c=1))
+xvals <- seq(0,14.4,l=100)
+pred.val <- predict(asreg0, list(IV = xvals) , se.fit = TRUE,interval = "confidence",level = 0.95)
+# Add lines to plot
+#lines(xvals, pred.val, lwd=2, col=rgb(0,0.8,0,0.7), lty=1)
 
 
 ########################################################################################
 
+if (re.ax==FALSE) {
 # Make the base violin plot of the simulated data (replicates are iterations)
 plot(0,0,type="n", las=1, ylab="Herbivore species richness", xlab="Number of plant resources",
-	,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0), ylim=c(0,12), xlim=c(-0.15,12), xaxt='n')
+	,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0), ylim=c(0,10), xlim=c(-0.15,12), xaxt='n')
 # Add horizontal axis
-axis(1, at =seq(0,12,by=2), labels=c("0","20","40","60","80","100","120"),cex.axis=1.1)
+axis(1, at =seq(0,12,by=2), labels=c("0","20","40","60","80","100","120"),cex.axis=1.1)} else{
+plot(0,0,type="n", las=1, ylab="Herbivore species richness", xlab="Number of plant resource removed",
+	,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0), ylim=c(0,10), xlim=c(12,0.1), xaxt='n')
+# Add horizontal axis
+axis(1,at =seq(12.1,0.1,l=7),labels=c("0","20","40","60", "80","100", "120"),cex.axis=1.1)
+
+}
 
 # Add violin plot
 X <- vioplot(l.rich, add=T, col=rgb(0.8,0.8,0.8,1), border=NA,rectCol="black", lineCol="black", 
@@ -115,13 +166,28 @@ mtext("(c) Laikipia",cex=1.1, side = 3, adj = 0.03, line = -2,font=1)
 IV <- rep(1:12,100)
 DV <- c(t(l.rich))
 nlreg <- nls(DV~a*IV^b,start=list(a=8,b=0.5))
+nlreg2 <- nls(DV~a*(10*IV)^b,start=list(a=8,b=0.5))
+
 
 # Predict new data from model parameters
-xvals <- seq(0,12.6,l=100)
+xvals <- seq(0,12.1,l=100)
 pred.val <- predict(nlreg, list(IV = xvals) , se.fit = TRUE,interval = "confidence",level = 0.95)
 # Add lines to plot
 lines(xvals, pred.val, lwd=2, col=rgb(0.8,0,0,0.7), lty=1)
+# Estimated alpha and beta exponents
+if (re.ax==FALSE) {
+mtext(bquote(alpha == .(as.numeric(round(coef(nlreg2)[1],2) ))),cex=1, side = 1, adj = 0.95, line = -4,font=1)
+mtext(bquote(beta == .(as.numeric(round(coef(nlreg2)[2],2) ))),cex=1, side = 1, adj = 0.95, line = -2,font=1)} else{
+mtext(bquote(alpha == .(as.numeric(round(coef(nlreg2)[1],2) ))),cex=1, side = 1, adj = 0.05, line = -4,font=1)
+mtext(bquote(beta == .(as.numeric(round(coef(nlreg2)[2],2) ))),cex=1, side = 1, adj = 0.05, line = -2,font=1)	
+}
 
+
+asreg0 <- nls(DV~a - (a)*exp(-c*IV),start=list(a=8, c=1))
+xvals <- seq(0,14.4,l=100)
+pred.val <- predict(asreg0, list(IV = xvals) , se.fit = TRUE,interval = "confidence",level = 0.95)
+# Add lines to plot
+#lines(xvals, pred.val, lwd=2, col=rgb(0,0.8,0,0.7), lty=1)
 
 ########################################################################################
 ########################################################################################
@@ -134,7 +200,8 @@ cols2 <- c(colorRampPalette(c(rgb(0,0.4,0,0.25),rgb(0.3,0.9,0.3,0.25)),interpola
 
 dash <- rep(c(1,2,3,4),10)
 
-# set margins
+
+# Set margins
 par(mai=c(0,.7,0,0))
 
 # Make a blank plot
@@ -158,50 +225,70 @@ par(mai=c(.7,.7,0.1,0.1))
 g.cols <- c(13,3,11,8,10,4,7,1,20,15,19)
 
 # Make the plot
-plot(0,0,type="n",xlab="Number of plant resources", ylab="Presence probability", xlim=c(0,145), 
-	ylim=c(0,100),las=1 ,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0))
+if (re.ax==FALSE) {plot(0,0,type="n",xlab="Number of plant resources", ylab="Presence probability", xlim=c(0,145), 
+	ylim=c(0,100),las=1 ,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0))} else {
+plot(0,0,type="n",xlab="Number of plant resources removed", ylab="Presence probability", xlim=c(0,150), 
+	ylim=c(0,100),las=1 ,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0))	
+}
 
 # The persistence of the full stable community
 pres <- c(0,100,0,100,100,100,0,100,100,100,100)
 # Add the lines for each species
 for (nsp in 1:11){
-	lines(c(0,seq(10,140,by=10),144),c(0,g.prob[,nsp],pres[nsp]), col=cols2[g.cols[nsp]], lwd=1.5, lty=dash[g.cols[nsp]])
+if (re.ax==FALSE) {lines(c(0,seq(10,140,by=10),144),c(0,g.prob[,nsp],pres[nsp]), col=cols2[g.cols[nsp]], lwd=1.5, lty=dash[g.cols[nsp]])} else {
+lines(144-c(0,seq(10,140,by=10),144),c(0,g.prob[,nsp],pres[nsp]), col=cols2[g.cols[nsp]], lwd=1.5, lty=dash[g.cols[nsp]])	
+}
 }
 # Label the panel
-mtext("(d)",cex=1.1, side = 3, adj = 0.03, line = -2,font=1)
+if (re.ax==FALSE) {mtext("(d)",cex=1.1, side = 3, adj = 0.03, line = -2,font=1)} else {
+	mtext("(d)",cex=1.1, side = 3, adj = 0.97, line = -2,font=1)
+}
 ###########################################################################################
 # A vector so that the species correspond to the colors in the legend
 s.cols <- c(13,3,11,9,6,14,12,1)
 
 # Make the plot
-plot(0,0,type="n",xlab="Number of plant resources", ylab="Presence probability", xlim=c(0,100), 
-	ylim=c(0,100),las=1, cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0))
+if (re.ax==FALSE) {plot(0,0,type="n",xlab="Number of plant resources", ylab="Presence probability", xlim=c(0,100), 
+	ylim=c(0,100),las=1, cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0)) } else {
+plot(0,0,type="n",xlab="Number of plant resources removed", ylab="Presence probability", xlim=c(0,100), 
+	ylim=c(0,100),las=1, cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0))	
+}
 
 # The persistence of the full stable community
 pres <- c(100,0,100,100,0,0,100,0)
 # Add the lines for each species
 for (nsp in 1:8){
-	lines(c(0,seq(10,90,by=10),91),c(0,s.prob[,nsp],pres[nsp]), col=cols2[s.cols[nsp]], lwd=1.5, lty=dash[s.cols[nsp]])
+	if (re.ax==FALSE) {lines(c(0,seq(10,90,by=10),91),c(0,s.prob[,nsp],pres[nsp]), col=cols2[s.cols[nsp]], lwd=1.5, lty=dash[s.cols[nsp]])} else {
+lines(91-c(0,seq(10,91,by=10),91),c(0,s.prob[,nsp],pres[nsp]), col=cols2[s.cols[nsp]], lwd=1.5, lty=dash[s.cols[nsp]])		
+	}
 }
 # Label the panel
-mtext("(e)",cex=1.1, side = 3, adj = 0.03, line = -2,font=1)
-###########################################################################################
+if (re.ax==FALSE) {mtext("(e)",cex=1.1, side = 3, adj = 0.03, line = -2,font=1)} else {
+	mtext("(e)",cex=1.1, side = 3, adj = 0.97, line = -2,font=1)
+}###########################################################################################
 # A vector so that the species correspond to the colors in the legend
 l.cols <- c(13,3,2,6,10,16,12,5,18,1,17,19)
 
 # Make the plot
-plot(0,0,type="n",xlab="Number of plant resources", ylab="Presence probability", xlim=c(0,120), 
+if (re.ax==FALSE) {plot(0,0,type="n",xlab="Number of plant resources", ylab="Presence probability", xlim=c(0,120), 
+	ylim=c(0,100),las=1,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0))} else {
+plot(0,0,type="n",xlab="Number of plant resources removed", ylab="Presence probability", xlim=c(1,120), 
 	ylim=c(0,100),las=1,cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0))
+}
 
 # The persistence of the full stable community
 pres <- c(0,100,100,0,100,0,100,0,0,100,100,0)
 # Add the lines for each species
 for (nsp in 1:12){
-	lines(c(0,seq(10,120,by=10),121),c(0,l.prob[,nsp],pres[nsp]), col=cols2[l.cols[nsp]], lwd=1.5, lty=dash[l.cols[nsp]])
+if (re.ax==FALSE) {	
+	lines(c(0,seq(10,120,by=10),121),c(0,l.prob[,nsp],pres[nsp]), col=cols2[l.cols[nsp]], lwd=1.5, lty=dash[l.cols[nsp]])} else {
+	lines(121-c(0,seq(10,120,by=10),121),c(0,l.prob[,nsp],pres[nsp]), col=cols2[l.cols[nsp]], lwd=1.5, lty=dash[l.cols[nsp]])	
+	}
 }
 # Label the panel
-mtext("(f)",cex=1.1, side = 3, adj = 0.03, line = -2,font=1)
-###########################################################################################
+if (re.ax==FALSE) {mtext("(f)",cex=1.1, side = 3, adj = 0.03, line = -2,font=1)} else {
+	mtext("(f)",cex=1.1, side = 3, adj = 0.97, line = -2,font=1)
+}###########################################################################################
 
 # Close plot device and save to file
 dev.off()
