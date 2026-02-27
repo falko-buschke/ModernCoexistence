@@ -188,3 +188,15 @@ Last, the script `Figure5.R` is used to produce the figure `Figure 5.png`.
 Example:
 
 <img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Figures/Figure 5.png" alt="Coexistence" width="800"/>
+
+## R version
+All code is compatible witht he following version of `R`:
+
+`R version 4.5.1 (2025-06-13 ucrt)`
+
+`Platform: x86_64-w64-mingw32/x64`
+
+`Running under: Windows 11 x64 (build 26200)`
+
+
+
