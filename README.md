@@ -8,7 +8,7 @@ A description of the study is available as:
 
 - Buschke, F., Codron, D., Pringle, R. and Spaak, J., 2025. [A theoretical framework for multispecies coexistence in large herbivores based on functional traits and dietary data](https://doi.org/10.32942/X28H21). EcoEvoRxiv 
 
-The information was correct as of 16 February 2025 and deposited on Zenodo [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18656177.svg)](https://doi.org/10.5281/zenodo.18656177)
+The information was correct as of 27 February 2025 and deposited on Zenodo [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18656177.svg)](https://doi.org/10.5281/zenodo.18656177)
 . For any queries, contact Falko Buschke `falko.buschke@gmail.com`
 
 ## Study Area
@@ -80,6 +80,12 @@ This whole process is iterated 100 times for each level of plant resources richn
 In addition to the maximum richness of each iteration, the presence of individual herbivore species is tracked. The persistence probability of each species at each level of plant resource richness is estimated by dividing the number of interations in which the species can persist stably, by the total number of iterations.
 
 Results for richness and species' persistence probabilities are written to file and saved in sub-directory `Processed_data`.
+
+### Scripts: Trait based analysis
+The single script `Trait_Analyses_supplement.R` reproduces the analyses on how traits relate to coexistence and niche- and fitness difference. It produces Figures S1-S6, which are automatically saved to the `Figures/Supp` sub-directory.
+
+This script call on data from both the `Raw Data` and `Processed Data` directories.
+
 
 ### Sub-directory: Raw Data
 
