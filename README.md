@@ -158,22 +158,27 @@ Lastly, there a three `.txt` files with the **persistence probability** for each
 
 This directory include the R-scripts used to reproduce the composite figures of all the protected areas. **Both scripts rely on input files from the `Processed data` directory.**
 
-First, the script `Combined_Coexistence.R` is used to produce the figure `Combined Coexistence.png`.
+First, the script `Figure2.R` creates a plot showing the intrinsic, invasion, an no-niche growth rates for each species in each reserve.
 
 Example:
 
-<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Figures/Combined Coexistence.png" alt="Coexistence" width="1200"/>
+<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Figures/Figure 2.png" alt="Coexistence" width="400"/>
 
 
-Second, the script `Growth_Rates.R` creates a plot showing the intrinsic, invasion, an no-niche growth rates for each species in each reserve.
-
-Example:
-
-<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Figures/Growth rates.png" alt="Coexistence" width="400"/>
-
-
-Third, the script `Cascade_plots.R` is used to produce the figure `Complete_cascade_params.png`.
+Second, the script `Figure3.R` is used to produce the figure `Figure 3.png`.
 
 Example:
 
-<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Figures/Complete_cascade_params.png" alt="Coexistence" width="1200"/>
+<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Figures/Figure 3.png" alt="Coexistence" width="400"/>
+
+Third, the script `Figure4.R` is used to produce the figure `Figure 4.png`.
+
+Example:
+
+<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Figures/Figure 4.png" alt="Coexistence" width="600"/>
+
+Last, the script `Figure5.R` is used to produce the figure `Figure 5.png`.
+
+Example:
+
+<img src="https://github.com/falko-buschke/ModernCoexistence/blob/main/Figures/Figure 5.png" alt="Coexistence" width="800"/>
