@@ -1,11 +1,9 @@
-setwd("C:/Users/Falko/Documents/Standalone Research/Mammal Isotopes/Most recent manuscript and files")
-
 # Load the data
 comm <- read.csv("Processed_data/MCT_combined_data.csv")
 
 
 # Define the colour ramp
-col.ramp <- c(rgb(0,0.7,0,1), rgb(0.6,0,0,1), rgb(0,0,.8,1))
+col.ramp <- c(rgb(0.333,0.8333,0,1), rgb(1,0.8,0,1), rgb(0,0.6667,.8333,1))
 
 # Annualised or daily rates (change this parameter for more intutitve interpretation)
 rate <- "annual" # or daily
@@ -18,12 +16,15 @@ int.h <- ifelse(rate=="annual", .55, 0.002)
 int <- c(int.l,int.h)
 
 # Set plot dimensions
-png(filename="Figures/Growth rates.png",width=14,height=28,units="cm",res=300)
+png(filename="Figures/Figure 2.png",width=14,height=28,units="cm",res=300)
+#pdf(file = "Manuscript/Submission Files/Resubmission/Figure2.pdf", height = 9.44882, width = 5.51181) 
+
 
 # Set plot margins
 par(mfrow=c(3,1))
-par(mai=c(0.5,1.1,0.3,0.15))
+par(mai=c(0.5,1.6,0.3,0.15))
 
+#opar <- par(lwd = 0.5)
 
 ########################################################################################
 # Use a subset of data from Gorongosa
@@ -36,7 +37,7 @@ rownames(G.gr) <- G.sub[,2]
 
 # Create bar chart
 barplot(height=t(G.gr[order(G.gr[,1]),]), beside=T, horiz=T, las=1, col= rep(col.ramp, dim(G.gr)[1]),
-	xlim=int,xlab="Growth rates",cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0))
+	xlim=int,xlab="Growth rates",cex=1.5,cex.axis=1.5, cex.lab= 1.7, mgp=c(2.4,0.6,0),lwd=0.5)
 
 # add zero-line and bounding box
 abline(v=0); box()
@@ -45,7 +46,7 @@ axis(2,at =seq(2.5,42.5,by=4), labels=rep("",11))
 abline(h=seq(0.5,44.5,by=4), col="lightgrey")
 
 # Add panel label
-mtext("(a) Gorongosa",cex=1.25, side = 3, adj = -0.25, line = 0.8,font=1)
+mtext("(a) Gorongosa",cex=1.25, side = 3, adj = -0.5, line = 0.8,font=1)
 
 #######################################################################################3
 ########################################################################################
@@ -59,16 +60,16 @@ rownames(S.gr) <- S.sub[,2]
 
 # Create bar chart
 barplot(height=t(S.gr[order(S.gr[,1]),]), beside=T, horiz=T, las=1, col= rep(col.ramp, dim(S.gr)[1]),
-	xlim=int,xlab="Growth rate",cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0))
+	xlim=int,xlab="Growth rate",cex=1.5,cex.axis=1.5, cex.lab= 1.7, mgp=c(2.4,0.6,0),lwd=0.5)
 
 # add zero-line and bounding box
 abline(v=0); box()
 # Add axis ticks and guidelines
-axis(2,at =seq(2.5,30.5,by=4), labels=rep("",8))
+axis(2,at =seq(2.5,30.5,by=4), labels=rep("",8),cex.axis=1.3)
 abline(h=seq(0.5,36.5,by=4), col="lightgrey")
 
 # Add panel label
-mtext("(b) Serengeti",cex=1.25, side = 3, adj = -0.25, line = 0.8,font=1)
+mtext("(b) Serengeti",cex=1.25, side = 3, adj = -0.5, line = 0.8, font=1)
 
 #######################################################################################3
 ########################################################################################
@@ -79,23 +80,22 @@ L.sub <- comm[comm$PA=="Laikipia",]
 L.gr <- as.matrix(L.sub[,c(5,6,7)])*yr
 rownames(L.gr) <- L.sub[,2]
 
-
 # Create bar chart
 barplot(height=t(L.gr[order(L.gr[,1]),]), beside=T, horiz=T, las=1, col= rep(col.ramp, dim(L.gr)[1]),
-	xlim=int,xlab="Growth rate",cex.axis=1.1, cex.lab= 1.3, mgp=c(2.4,0.6,0))
+	xlim=int,xlab="Growth rate",cex=1.5,cex.axis=1.5, cex.lab= 1.7, mgp=c(2.4,0.6,0),lwd=0.5)
 
 # add zero-line and bounding box
 abline(v=0); box()
 # Add axis ticks and guidelines
-axis(2,at =seq(2.5,46.5,by=4), labels=rep("",12))
+axis(2,at =seq(2.5,46.5,by=4), labels=rep("",12),cex.axis=1.3)
 abline(h=seq(0.5,48.5,by=4), col="lightgrey")
 
 # Add panel label
-mtext("(c) Laikipia",cex=1.25, side = 3, adj = -0.25, line = 0.8,font=1)
+mtext("(c) Laikipia",cex=1.25, side = 3, adj = -0.5, line = 0.8,font=1)
 
 # Add legend
 legend("bottomleft", pch=22, col="black",pt.bg=col.ramp,bg="white",
-	legend=c("Intrinsic growth rate","Invasion growth rate","No-niche growth rate" ),pt.cex=1.5, cex=1.25, pt.lw=0.5)
+	legend=c("Intrinsic growth rate","Invasion growth rate","No-niche growth rate" ),pt.cex=1.5, cex=1.25, pt.lw=0.8)
 
 #######################################################################################3
 
